@@ -17,34 +17,68 @@ body {
 }
 
 header {
-  height: 68px;
-  padding: 0 24px;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #e8eaed;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 5;
 }
 
 .logo {
   font-size: 23px;
   font-weight: 600;
-  letter-spacing: -1px;
 }
 
-.add-button {
-  background: #1a73e8;
-  color: white;
+nav {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+nav button {
+  background: white;
   border: none;
-  border-radius: 24px;
-  padding: 12px 19px;
-  font-size: 14px;
+  padding: 10px 13px;
+  border-radius: 8px;
+  color: #5f6368;
   cursor: pointer;
+}
+
+nav button.active {
+  background: #e8f0fe;
+  color: #1967d2;
 }
 
 main {
   max-width: 1050px;
   margin: auto;
   padding: 24px;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+h1 {
+  font-size: 27px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.add-button, .save-button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 22px;
+  padding: 12px 18px;
+  cursor: pointer;
 }
 
 .toolbar {
@@ -59,54 +93,48 @@ main {
 .month-controls {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .month-controls h1 {
-  font-size: 23px;
-  font-weight: 500;
-  min-width: 190px;
+  font-size: 22px;
+  min-width: 185px;
 }
 
 .nav-button {
   background: white;
   border: 1px solid #dadce0;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   font-size: 18px;
 }
 
-.today-button, .view-button {
+.today-button, .view-button, .secondary {
   background: white;
   border: 1px solid #dadce0;
   border-radius: 7px;
-  padding: 9px 14px;
+  padding: 9px 13px;
   cursor: pointer;
-}
-
-.view-options {
-  display: flex;
-  gap: 8px;
 }
 
 .view-button.active {
   background: #e8f0fe;
-  border-color: #d2e3fc;
   color: #1967d2;
+  border-color: #d2e3fc;
 }
 
 .calendar {
   border-top: 1px solid #dadce0;
   border-left: 1px solid #dadce0;
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(7,minmax(0,1fr));
 }
 
 .weekday {
   text-align: center;
-  padding: 13px 3px;
+  padding: 12px 3px;
   font-size: 12px;
   color: #5f6368;
   border-right: 1px solid #dadce0;
@@ -114,26 +142,16 @@ main {
 }
 
 .day {
-  min-height: 112px;
-  padding: 8px;
+  min-height: 105px;
+  padding: 7px;
   border-right: 1px solid #dadce0;
   border-bottom: 1px solid #dadce0;
   cursor: pointer;
-  background: white;
 }
 
-.day:hover {
-  background: #f8faff;
-}
-
-.day.outside {
-  background: #fafafa;
-  color: #a0a0a0;
-}
-
-.day.selected {
-  background: #f1f6ff;
-}
+.day:hover { background: #f8faff; }
+.day.outside { background: #fafafa; color: #aaa; }
+.day.selected { background: #f1f6ff; }
 
 .day-number {
   display: inline-flex;
@@ -155,56 +173,61 @@ main {
   background: #d3e3fd;
   color: #174ea6;
   border-radius: 4px;
-  padding: 4px 6px;
-  font-size: 11px;
+  padding: 4px 5px;
+  font-size: 10px;
   margin-top: 5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-.agenda {
-  margin-top: 25px;
-  border-top: 1px solid #dadce0;
-  padding-top: 17px;
+.event-pill.important {
+  background: #fce8d5;
+  color: #994c00;
 }
 
-.agenda h2 {
-  font-size: 18px;
-  font-weight: 500;
+.section-card {
+  border: 1px solid #e8eaed;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 20px 0;
 }
 
-.agenda-event {
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.agenda-event, .task {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  padding: 13px;
+  padding: 13px 4px;
   border-bottom: 1px solid #eee;
 }
 
 .event-details {
   display: flex;
-  gap: 12px;
   align-items: center;
+  gap: 12px;
 }
 
 .event-color {
   width: 4px;
-  height: 37px;
+  height: 38px;
   background: #1a73e8;
   border-radius: 5px;
 }
 
-.event-time {
-  color: #5f6368;
+.event-color.important { background: #e69b38; }
+
+.event-time, .muted {
+  color: #777;
   font-size: 13px;
   margin-top: 4px;
-}
-
-.event-actions {
-  display: flex;
-  gap: 6px;
 }
 
 .small-button {
@@ -215,11 +238,40 @@ main {
   cursor: pointer;
 }
 
-.empty {
-  color: #777;
-  font-size: 14px;
-  padding: 12px 0;
+.task {
+  justify-content: flex-start;
 }
+
+.task span { flex: 1; }
+.task.done span {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task input {
+  width: 17px;
+  height: 17px;
+  accent-color: #1a73e8;
+}
+
+.add-task-row {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+input, select {
+  font: inherit;
+}
+
+.add-task-row input, .modal-content input:not([type="checkbox"]) {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 7px;
+}
+
+.add-task-row input { flex: 1; }
 
 .modal {
   display: none;
@@ -232,9 +284,7 @@ main {
   padding: 16px;
 }
 
-.modal.open {
-  display: flex;
-}
+.modal.open { display: flex; }
 
 .modal-content {
   background: white;
@@ -242,14 +292,9 @@ main {
   max-width: 420px;
   border-radius: 13px;
   padding: 23px;
-  box-shadow: 0 8px 35px #0002;
 }
 
-.modal-content h2 {
-  font-size: 21px;
-  margin-top: 0;
-  font-weight: 500;
-}
+.modal-content h2 { margin-top: 0; }
 
 .modal-content label {
   display: block;
@@ -258,12 +303,21 @@ main {
   color: #555;
 }
 
-.modal-content input {
+.modal-content input:not([type="checkbox"]) {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #dadce0;
-  border-radius: 7px;
-  font-size: 15px;
+}
+
+.important-check {
+  display: flex !important;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px !important;
+}
+
+.important-check input {
+  width: 17px;
+  height: 17px;
+  accent-color: #1a73e8;
 }
 
 .modal-actions {
@@ -274,48 +328,34 @@ main {
 }
 
 .cancel-button {
-  border: none;
   background: white;
+  border: none;
   padding: 10px 14px;
   cursor: pointer;
 }
 
-.save-button {
-  border: none;
-  background: #1a73e8;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 6px;
-  cursor: pointer;
+.empty {
+  color: #777;
+  font-size: 14px;
+  padding: 12px 0;
 }
 
-.week-view {
-  grid-column: 1 / -1;
-}
-
-@media(max-width: 600px) {
-  header { padding: 0 14px; }
-  main { padding: 16px 10px; }
-
-  .toolbar {
+@media(max-width:600px) {
+  header {
+    padding: 14px;
     align-items: flex-start;
     flex-direction: column;
+    gap: 10px;
   }
 
-  .month-controls h1 {
-    font-size: 20px;
-    min-width: 170px;
-  }
-
-  .day {
-    min-height: 75px;
-    padding: 4px;
-  }
-
+  nav { width: 100%; justify-content: space-between; }
+  nav button { padding: 8px; font-size: 12px; }
+  main { padding: 16px 10px; }
+  .day { min-height: 68px; padding: 4px; }
   .weekday { font-size: 10px; }
   .event-pill { font-size: 9px; padding: 3px; }
-
-  .calendar { gap: 0; }
+  .month-controls h1 { font-size: 19px; min-width: 155px; }
+  .toolbar { align-items: flex-start; flex-direction: column; }
 }
 </style>
 </head>
@@ -324,10 +364,18 @@ main {
 
 <header>
   <div class="logo">Calender</div>
+  <nav>
+    <button class="active" onclick="showPage('calendar',this)">Calendar</button>
+    <button onclick="showPage('checklist',this)">Checklist</button>
+    <button onclick="showPage('important',this)">Important</button>
+    <button onclick="showPage('upcoming',this)">Upcoming</button>
+  </nav>
   <button class="add-button" onclick="openModal()">+ Add Event</button>
 </header>
 
 <main>
+
+<section id="calendar" class="page active">
   <div class="toolbar">
     <div class="month-controls">
       <button class="nav-button" onclick="changeMonth(-1)">‹</button>
@@ -336,23 +384,58 @@ main {
       <button class="today-button" onclick="goToday()">Today</button>
     </div>
 
-    <div class="view-options">
+    <div>
       <button class="view-button active" id="monthBtn" onclick="setView('month')">Month</button>
       <button class="view-button" id="weekBtn" onclick="setView('week')">Week</button>
     </div>
   </div>
 
-  <div class="calendar" id="calendar"></div>
+  <div class="calendar" id="calendarGrid"></div>
 
-  <div class="agenda">
+  <div class="section-card">
     <h2 id="agendaTitle">Your schedule</h2>
     <div id="agendaEvents"></div>
   </div>
+</section>
+
+<section id="checklist" class="page">
+  <h1>Checklist</h1>
+  <p class="muted">Keep track of the things you need to do.</p>
+
+  <div class="section-card">
+    <h2>My Tasks</h2>
+    <div class="add-task-row">
+      <input id="taskInput" placeholder="Add a new task..." onkeydown="if(event.key==='Enter')addTask()">
+      <button class="add-button" onclick="addTask()">Add</button>
+    </div>
+    <div id="taskList"></div>
+  </div>
+</section>
+
+<section id="important" class="page">
+  <h1>Important Events</h1>
+  <p class="muted">Your special dates and important plans, all in one place.</p>
+
+  <div class="section-card">
+    <h2>Starred Events</h2>
+    <div id="importantList"></div>
+  </div>
+</section>
+
+<section id="upcoming" class="page">
+  <h1>Upcoming Events</h1>
+  <p class="muted">See what's coming up next.</p>
+
+  <div class="section-card">
+    <div id="upcomingList"></div>
+  </div>
+</section>
+
 </main>
 
 <div class="modal" id="eventModal">
   <div class="modal-content">
-    <h2 id="modalTitle">Add event</h2>
+    <h2 id="modalTitle">Add Event</h2>
 
     <label for="eventName">Event name</label>
     <input id="eventName" placeholder="What are you doing?">
@@ -363,15 +446,21 @@ main {
     <label for="eventTime">Time (optional)</label>
     <input id="eventTime" type="time">
 
+    <label class="important-check">
+      <input type="checkbox" id="eventImportant">
+      Mark as important
+    </label>
+
     <div class="modal-actions">
       <button class="cancel-button" onclick="closeModal()">Cancel</button>
-      <button class="save-button" onclick="saveEvent()">Save</button>
+      <button class="save-button" onclick="saveEvent()">Save Event</button>
     </div>
   </div>
 </div>
 
 <script>
 let events = JSON.parse(localStorage.getItem("calenderEvents") || "[]");
+let tasks = JSON.parse(localStorage.getItem("calenderTasks") || "[]");
 
 let currentDate = new Date();
 let selectedDate = dateString(new Date());
@@ -387,146 +476,140 @@ function dateString(date) {
 }
 
 function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, c => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;",
-    '"':"&quot;", "'":"&#39;"
+  return String(value).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[c]));
 }
 
 function saveData() {
   localStorage.setItem("calenderEvents",JSON.stringify(events));
+  localStorage.setItem("calenderTasks",JSON.stringify(tasks));
 }
 
-function render() {
-  renderCalendar();
-  renderAgenda();
+function showPage(id,button) {
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  renderAll();
 }
 
 function changeMonth(amount) {
-  currentDate = new Date(
-    currentDate.getFullYear(),
-    currentDate.getMonth()+amount,
-    1
-  );
-  render();
+  currentDate = new Date(currentDate.getFullYear(),currentDate.getMonth()+amount,1);
+  renderCalendar();
 }
 
 function goToday() {
   currentDate = new Date();
   selectedDate = dateString(new Date());
-  render();
+  renderAll();
 }
 
 function setView(type) {
-  view = type;
+  view=type;
   document.getElementById("monthBtn").classList.toggle("active",type==="month");
   document.getElementById("weekBtn").classList.toggle("active",type==="week");
-  render();
+  renderCalendar();
 }
 
 function selectDate(date) {
-  selectedDate = date;
-  currentDate = new Date(date+"T12:00:00");
-  render();
+  selectedDate=date;
+  currentDate=new Date(date+"T12:00:00");
+  renderCalendar();
 }
 
 function renderCalendar() {
   document.getElementById("monthTitle").textContent =
     currentDate.toLocaleDateString("en-US",{month:"long",year:"numeric"});
 
-  let html = "";
-  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(day => {
-    html += `<div class="weekday">${day}</div>`;
+  let html="";
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
+    html+=`<div class="weekday">${d}</div>`;
   });
 
   let start;
   let total;
 
   if(view==="month") {
-    start = new Date(currentDate.getFullYear(),currentDate.getMonth(),1);
+    start=new Date(currentDate.getFullYear(),currentDate.getMonth(),1);
     start.setDate(1-start.getDay());
-    total = 42;
+    total=42;
   } else {
-    start = new Date(currentDate);
+    start=new Date(currentDate);
     start.setDate(start.getDate()-start.getDay());
-    total = 7;
+    total=7;
   }
 
   for(let i=0;i<total;i++) {
-    let date = new Date(start);
+    let date=new Date(start);
     date.setDate(start.getDate()+i);
-    let key = dateString(date);
-    let isOutside = date.getMonth()!==currentDate.getMonth();
-    let classes = "day";
+    let key=dateString(date);
 
+    let classes="day";
     if(key===dateString(new Date())) classes+=" today";
     if(key===selectedDate) classes+=" selected";
-    if(view==="month" && isOutside) classes+=" outside";
+    if(view==="month" && date.getMonth()!==currentDate.getMonth()) classes+=" outside";
 
-    let dayEvents = events.filter(e=>e.date===key);
+    let dayEvents=events.filter(e=>e.date===key);
 
-    html += `
+    html+=`
       <div class="${classes}" onclick="selectDate('${key}')">
         <span class="day-number">${date.getDate()}</span>
         ${dayEvents.slice(0,3).map(e=>`
-          <span class="event-pill">${escapeHTML(e.name)}</span>
+          <span class="event-pill ${e.important?"important":""}">${escapeHTML(e.name)}</span>
         `).join("")}
         ${dayEvents.length>3?`<span class="event-pill">+${dayEvents.length-3} more</span>`:""}
-      </div>
-    `;
+      </div>`;
   }
 
-  document.getElementById("calendar").innerHTML = html;
-}
-
-function renderAgenda() {
-  let date = new Date(selectedDate+"T12:00:00");
-
-  document.getElementById("agendaTitle").textContent =
-    date.toLocaleDateString("en-US",{
-      weekday:"long",month:"long",day:"numeric"
-    });
-
-  let list = events
-    .filter(e=>e.date===selectedDate)
-    .sort((a,b)=>(a.time||"").localeCompare(b.time||""));
-
-  if(!list.length) {
-    document.getElementById("agendaEvents").innerHTML =
-      '<div class="empty">No events scheduled. Add something to your day!</div>';
-    return;
-  }
-
-  document.getElementById("agendaEvents").innerHTML = list.map(e=>`
-    <div class="agenda-event">
-      <div class="event-details">
-        <div class="event-color"></div>
-        <div>
-          <strong>${escapeHTML(e.name)}</strong>
-          <div class="event-time">${e.time ? formatTime(e.time) : "All day"}</div>
-        </div>
-      </div>
-      <div class="event-actions">
-        <button class="small-button" onclick="editEvent(${e.id})">Edit</button>
-        <button class="small-button" onclick="deleteEvent(${e.id})">Delete</button>
-      </div>
-    </div>
-  `).join("");
+  document.getElementById("calendarGrid").innerHTML=html;
+  renderAgenda();
 }
 
 function formatTime(time) {
-  let [hours,minutes] = time.split(":");
-  let d = new Date();
-  d.setHours(Number(hours),Number(minutes));
-  return d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
+  if(!time) return "All day";
+  let [h,m]=time.split(":");
+  let date=new Date();
+  date.setHours(Number(h),Number(m));
+  return date.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
+}
+
+function eventHTML(e) {
+  return `
+    <div class="agenda-event">
+      <div class="event-details">
+        <div class="event-color ${e.important?"important":""}"></div>
+        <div>
+          <strong>${escapeHTML(e.name)}</strong>
+          <div class="event-time">${e.date} · ${formatTime(e.time)} ${e.important?"· ★ Important":""}</div>
+        </div>
+      </div>
+      <div>
+        <button class="small-button" onclick="editEvent(${e.id})">Edit</button>
+        <button class="small-button" onclick="deleteEvent(${e.id})">×</button>
+      </div>
+    </div>`;
+}
+
+function renderAgenda() {
+  let date=new Date(selectedDate+"T12:00:00");
+  document.getElementById("agendaTitle").textContent =
+    date.toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"});
+
+  let list=events.filter(e=>e.date===selectedDate)
+    .sort((a,b)=>(a.time||"").localeCompare(b.time||""));
+
+  document.getElementById("agendaEvents").innerHTML =
+    list.length?list.map(eventHTML).join(""):'<p class="empty">No events planned. Click + Add Event to get started.</p>';
 }
 
 function openModal() {
-  editingId = null;
-  document.getElementById("modalTitle").textContent = "Add event";
-  document.getElementById("eventName").value = "";
-  document.getElementById("eventDate").value = selectedDate;
-  document.getElementById("eventTime").value = "";
+  editingId=null;
+  document.getElementById("modalTitle").textContent="Add Event";
+  document.getElementById("eventName").value="";
+  document.getElementById("eventDate").value=selectedDate;
+  document.getElementById("eventTime").value="";
+  document.getElementById("eventImportant").checked=false;
   document.getElementById("eventModal").classList.add("open");
 }
 
@@ -535,9 +618,10 @@ function closeModal() {
 }
 
 function saveEvent() {
-  let name = document.getElementById("eventName").value.trim();
-  let date = document.getElementById("eventDate").value;
-  let time = document.getElementById("eventTime").value;
+  let name=document.getElementById("eventName").value.trim();
+  let date=document.getElementById("eventDate").value;
+  let time=document.getElementById("eventTime").value;
+  let important=document.getElementById("eventImportant").checked;
 
   if(!name || !date) {
     alert("Please enter an event name and date.");
@@ -545,41 +629,103 @@ function saveEvent() {
   }
 
   if(editingId!==null) {
-    events = events.map(e=>e.id===editingId?{...e,name,date,time}:e);
+    events=events.map(e=>e.id===editingId?{...e,name,date,time,important}:e);
   } else {
-    events.push({id:Date.now(),name,date,time});
+    events.push({id:Date.now(),name,date,time,important});
   }
 
-  selectedDate = date;
-  currentDate = new Date(date+"T12:00:00");
+  selectedDate=date;
+  currentDate=new Date(date+"T12:00:00");
   saveData();
   closeModal();
-  render();
+  renderAll();
 }
 
 function editEvent(id) {
-  let e = events.find(item=>item.id===id);
+  let e=events.find(item=>item.id===id);
   if(!e) return;
 
-  editingId = id;
-  document.getElementById("modalTitle").textContent = "Edit event";
-  document.getElementById("eventName").value = e.name;
-  document.getElementById("eventDate").value = e.date;
-  document.getElementById("eventTime").value = e.time || "";
+  editingId=id;
+  document.getElementById("modalTitle").textContent="Edit Event";
+  document.getElementById("eventName").value=e.name;
+  document.getElementById("eventDate").value=e.date;
+  document.getElementById("eventTime").value=e.time||"";
+  document.getElementById("eventImportant").checked=!!e.important;
   document.getElementById("eventModal").classList.add("open");
 }
 
 function deleteEvent(id) {
   if(!confirm("Delete this event?")) return;
-  events = events.filter(e=>e.id!==id);
+  events=events.filter(e=>e.id!==id);
   saveData();
-  render();
+  renderAll();
 }
 
-render();
+function addTask() {
+  let input=document.getElementById("taskInput");
+  let text=input.value.trim();
+  if(!text) return;
+
+  tasks.push({id:Date.now(),text,done:false});
+  input.value="";
+  saveData();
+  renderTasks();
+}
+
+function toggleTask(id) {
+  tasks=tasks.map(t=>t.id===id?{...t,done:!t.done}:t);
+  saveData();
+  renderTasks();
+}
+
+function deleteTask(id) {
+  tasks=tasks.filter(t=>t.id!==id);
+  saveData();
+  renderTasks();
+}
+
+function renderTasks() {
+  let list=document.getElementById("taskList");
+
+  list.innerHTML=tasks.length?tasks.map(t=>`
+    <div class="task ${t.done?"done":""}">
+      <input type="checkbox" ${t.done?"checked":""} onchange="toggleTask(${t.id})">
+      <span>${escapeHTML(t.text)}</span>
+      <button class="small-button" onclick="deleteTask(${t.id})">Delete</button>
+    </div>
+  `).join(""):'<p class="empty">Your checklist is empty. Add your first task above.</p>';
+}
+
+function renderImportant() {
+  let list=events.filter(e=>e.important)
+    .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+
+  document.getElementById("importantList").innerHTML =
+    list.length?list.map(eventHTML).join(""):'<p class="empty">No important events yet. When adding an event, check "Mark as important" and it will appear here automatically.</p>';
+}
+
+function renderUpcoming() {
+  let today=dateString(new Date());
+  let list=events.filter(e=>e.date>=today)
+    .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))
+    .slice(0,20);
+
+  document.getElementById("upcomingList").innerHTML =
+    list.length?list.map(eventHTML).join(""):'<p class="empty">Nothing coming up yet. Add an event to your calendar!</p>';
+}
+
+function renderAll() {
+  renderCalendar();
+  renderTasks();
+  renderImportant();
+  renderUpcoming();
+}
+
+renderAll();
 </script>
 
 </body>
 </html>
+
 
 
