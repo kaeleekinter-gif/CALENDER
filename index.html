@@ -6,71 +6,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calender</title>
 
+
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fff9f6;
-  color: #403737;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f6f7f6;
+  color: #252a27;
 }
 
 header {
-  background: #f7dce5;
-  padding: 18px;
+  background: #ffffff;
+  padding: 18px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #e8ebe8;
   position: sticky;
   top: 0;
   z-index: 5;
 }
 
 .logo {
-  font-size: 25px;
-  font-weight: bold;
-  color: #a94f70;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: #263b32;
 }
 
 nav {
   display: flex;
-  gap: 7px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
 nav button {
   border: none;
   background: transparent;
-  padding: 9px;
-  border-radius: 12px;
+  padding: 10px 13px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #684c57;
+  color: #68716b;
+  font-size: 14px;
 }
 
 nav button.active {
-  background: white;
-  color: #a94f70;
+  background: #eaf0eb;
+  color: #345844;
+  font-weight: 600;
 }
 
 main {
-  max-width: 850px;
+  max-width: 900px;
   margin: auto;
-  padding: 22px 16px 60px;
+  padding: 30px 20px 60px;
 }
 
-h1 { font-size: 30px; }
-h2 { font-size: 21px; }
+h1 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  font-weight: 650;
+}
 
-.page { display: none; }
-.page.active { display: block; }
+h2 {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
 
 .card {
-  background: white;
-  padding: 18px;
-  border-radius: 18px;
-  margin: 14px 0;
-  box-shadow: 0 3px 14px #eadde0;
+  background: #ffffff;
+  padding: 22px;
+  border-radius: 14px;
+  margin: 16px 0;
+  border: 1px solid #e9ece9;
+  box-shadow: 0 2px 8px rgba(30, 45, 35, 0.03);
 }
 
 button, input, select {
@@ -78,30 +99,40 @@ button, input, select {
 }
 
 .primary {
-  background: #bd718e;
+  background: #365c48;
   color: white;
   border: none;
   padding: 12px 17px;
-  border-radius: 12px;
+  border-radius: 9px;
   cursor: pointer;
 }
 
+.primary:hover {
+  background: #294936;
+}
+
 .secondary {
-  background: #f8e5eb;
-  color: #884c63;
+  background: #eef1ee;
+  color: #405348;
   border: none;
   padding: 10px 13px;
-  border-radius: 10px;
+  border-radius: 9px;
   cursor: pointer;
 }
 
 input, select {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ead5dc;
-  border-radius: 10px;
-  background: #fffdfc;
+  border: 1px solid #dfe4df;
+  border-radius: 9px;
+  background: #ffffff;
   margin: 6px 0 13px;
+  color: #252a27;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #a8c1ae;
+  border-color: transparent;
 }
 
 .month-header {
@@ -112,88 +143,129 @@ input, select {
 }
 
 .month-header button {
-  border: none;
-  background: #f8e5eb;
-  border-radius: 10px;
-  padding: 10px;
+  border: 1px solid #e5e9e5;
+  background: white;
+  border-radius: 9px;
+  padding: 10px 13px;
   cursor: pointer;
 }
 
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  margin-top: 15px;
+  gap: 6px;
+  margin-top: 18px;
 }
 
 .day-name {
   text-align: center;
   font-size: 12px;
-  color: #987b86;
+  color: #858d87;
   padding: 8px 0;
 }
 
 .day {
-  min-height: 76px;
-  background: #fff9f7;
-  border-radius: 10px;
-  padding: 7px 4px;
-  border: 1px solid #f3e7e9;
+  min-height: 82px;
+  background: #ffffff;
+  border-radius: 9px;
+  padding: 8px 5px;
+  border: 1px solid #e9ece9;
   cursor: pointer;
   font-size: 13px;
 }
 
-.day.today { border: 2px solid #c77c99; }
-.day.selected { background: #f8e5eb; }
+.day.today {
+  border: 2px solid #668a73;
+}
+
+.day.selected {
+  background: #edf3ee;
+}
 
 .event-dot {
   display: block;
   font-size: 10px;
   margin-top: 5px;
   overflow-wrap: anywhere;
-  color: #a04e70;
+  color: #456b51;
 }
 
 .event {
-  padding: 12px;
-  border-radius: 12px;
-  background: #fff4f6;
+  padding: 13px;
+  border-radius: 9px;
+  background: #f5f7f5;
   margin: 9px 0;
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
 
-.event small { color: #987b86; }
+.event small {
+  color: #858d87;
+}
 
 .todo-row {
   display: flex;
   gap: 10px;
   align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #f1e5e8;
+  padding: 12px 0;
+  border-bottom: 1px solid #edf0ed;
 }
 
-.todo-row span { flex: 1; }
-.todo-row.done span { text-decoration: line-through; color: #aaa; }
+.todo-row span {
+  flex: 1;
+}
+
+.todo-row.done span {
+  text-decoration: line-through;
+  color: #a0a6a1;
+}
 
 .week-row {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 100px 1fr;
   gap: 10px;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0e5e8;
+  padding: 14px 0;
+  border-bottom: 1px solid #edf0ed;
 }
 
-.muted { color: #987b86; font-size: 14px; }
+.muted {
+  color: #858d87;
+  font-size: 14px;
+}
 
 @media(max-width: 520px) {
-  header { align-items: flex-start; flex-direction: column; gap: 10px; }
-  nav { width: 100%; }
-  nav button { font-size: 12px; padding: 8px; }
-  .day { min-height: 62px; font-size: 12px; }
+  header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  nav button {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  main {
+    padding: 22px 13px 50px;
+  }
+
+  .day {
+    min-height: 65px;
+    font-size: 12px;
+  }
+
+  .card {
+    padding: 16px;
+  }
 }
 </style>
+
 </head>
 
 <body>
@@ -542,3 +614,4 @@ renderAll();
 
 </body>
 </html>
+
