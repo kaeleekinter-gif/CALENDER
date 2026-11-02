@@ -6,382 +6,372 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calender</title>
 
-
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f6f7f6;
-  color: #252a27;
+  background: #fff;
+  color: #202124;
+  font-family: Arial, sans-serif;
 }
 
 header {
-  background: #ffffff;
-  padding: 18px 24px;
+  height: 68px;
+  padding: 0 24px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e8ebe8;
-  position: sticky;
-  top: 0;
-  z-index: 5;
+  justify-content: space-between;
+  border-bottom: 1px solid #e8eaed;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  color: #263b32;
-}
-
-nav {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-nav button {
-  border: none;
-  background: transparent;
-  padding: 10px 13px;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #68716b;
-  font-size: 14px;
-}
-
-nav button.active {
-  background: #eaf0eb;
-  color: #345844;
+  font-size: 23px;
   font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.add-button {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 19px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 main {
-  max-width: 900px;
+  max-width: 1050px;
   margin: auto;
-  padding: 30px 20px 60px;
+  padding: 24px;
 }
 
-h1 {
-  font-size: 30px;
-  letter-spacing: -1px;
-  font-weight: 650;
-}
-
-h2 {
-  font-size: 19px;
-  font-weight: 600;
-}
-
-.page {
-  display: none;
-}
-
-.page.active {
-  display: block;
-}
-
-.card {
-  background: #ffffff;
-  padding: 22px;
-  border-radius: 14px;
-  margin: 16px 0;
-  border: 1px solid #e9ece9;
-  box-shadow: 0 2px 8px rgba(30, 45, 35, 0.03);
-}
-
-button, input, select {
-  font: inherit;
-}
-
-.primary {
-  background: #365c48;
-  color: white;
-  border: none;
-  padding: 12px 17px;
-  border-radius: 9px;
-  cursor: pointer;
-}
-
-.primary:hover {
-  background: #294936;
-}
-
-.secondary {
-  background: #eef1ee;
-  color: #405348;
-  border: none;
-  padding: 10px 13px;
-  border-radius: 9px;
-  cursor: pointer;
-}
-
-input, select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #dfe4df;
-  border-radius: 9px;
-  background: #ffffff;
-  margin: 6px 0 13px;
-  color: #252a27;
-}
-
-input:focus, select:focus {
-  outline: 2px solid #a8c1ae;
-  border-color: transparent;
-}
-
-.month-header {
+.toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.month-header button {
-  border: 1px solid #e5e9e5;
+.month-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.month-controls h1 {
+  font-size: 23px;
+  font-weight: 500;
+  min-width: 190px;
+}
+
+.nav-button {
   background: white;
-  border-radius: 9px;
-  padding: 10px 13px;
+  border: 1px solid #dadce0;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.today-button, .view-button {
+  background: white;
+  border: 1px solid #dadce0;
+  border-radius: 7px;
+  padding: 9px 14px;
   cursor: pointer;
 }
 
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin-top: 18px;
+.view-options {
+  display: flex;
+  gap: 8px;
 }
 
-.day-name {
+.view-button.active {
+  background: #e8f0fe;
+  border-color: #d2e3fc;
+  color: #1967d2;
+}
+
+.calendar {
+  border-top: 1px solid #dadce0;
+  border-left: 1px solid #dadce0;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.weekday {
   text-align: center;
+  padding: 13px 3px;
   font-size: 12px;
-  color: #858d87;
-  padding: 8px 0;
+  color: #5f6368;
+  border-right: 1px solid #dadce0;
+  border-bottom: 1px solid #dadce0;
 }
 
 .day {
-  min-height: 82px;
-  background: #ffffff;
-  border-radius: 9px;
-  padding: 8px 5px;
-  border: 1px solid #e9ece9;
+  min-height: 112px;
+  padding: 8px;
+  border-right: 1px solid #dadce0;
+  border-bottom: 1px solid #dadce0;
   cursor: pointer;
-  font-size: 13px;
+  background: white;
 }
 
-.day.today {
-  border: 2px solid #668a73;
+.day:hover {
+  background: #f8faff;
+}
+
+.day.outside {
+  background: #fafafa;
+  color: #a0a0a0;
 }
 
 .day.selected {
-  background: #edf3ee;
+  background: #f1f6ff;
 }
 
-.event-dot {
+.day-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  font-size: 13px;
+}
+
+.day.today .day-number {
+  background: #1a73e8;
+  color: white;
+  border-radius: 50%;
+}
+
+.event-pill {
   display: block;
-  font-size: 10px;
+  background: #d3e3fd;
+  color: #174ea6;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 11px;
   margin-top: 5px;
-  overflow-wrap: anywhere;
-  color: #456b51;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.event {
-  padding: 13px;
-  border-radius: 9px;
-  background: #f5f7f5;
-  margin: 9px 0;
+.agenda {
+  margin-top: 25px;
+  border-top: 1px solid #dadce0;
+  padding-top: 17px;
+}
+
+.agenda h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.agenda-event {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
-}
-
-.event small {
-  color: #858d87;
-}
-
-.todo-row {
-  display: flex;
-  gap: 10px;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #edf0ed;
+  gap: 12px;
+  padding: 13px;
+  border-bottom: 1px solid #eee;
 }
 
-.todo-row span {
-  flex: 1;
+.event-details {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
-.todo-row.done span {
-  text-decoration: line-through;
-  color: #a0a6a1;
+.event-color {
+  width: 4px;
+  height: 37px;
+  background: #1a73e8;
+  border-radius: 5px;
 }
 
-.week-row {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 10px;
-  padding: 14px 0;
-  border-bottom: 1px solid #edf0ed;
+.event-time {
+  color: #5f6368;
+  font-size: 13px;
+  margin-top: 4px;
 }
 
-.muted {
-  color: #858d87;
+.event-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.small-button {
+  background: #f1f3f4;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.empty {
+  color: #777;
   font-size: 14px;
+  padding: 12px 0;
 }
 
-@media(max-width: 520px) {
-  header {
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #0006;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 13px;
+  padding: 23px;
+  box-shadow: 0 8px 35px #0002;
+}
+
+.modal-content h2 {
+  font-size: 21px;
+  margin-top: 0;
+  font-weight: 500;
+}
+
+.modal-content label {
+  display: block;
+  font-size: 13px;
+  margin: 13px 0 5px;
+  color: #555;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #dadce0;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.cancel-button {
+  border: none;
+  background: white;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.save-button {
+  border: none;
+  background: #1a73e8;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.week-view {
+  grid-column: 1 / -1;
+}
+
+@media(max-width: 600px) {
+  header { padding: 0 14px; }
+  main { padding: 16px 10px; }
+
+  .toolbar {
     align-items: flex-start;
     flex-direction: column;
-    gap: 12px;
   }
 
-  nav {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  nav button {
-    font-size: 12px;
-    padding: 8px;
-  }
-
-  main {
-    padding: 22px 13px 50px;
+  .month-controls h1 {
+    font-size: 20px;
+    min-width: 170px;
   }
 
   .day {
-    min-height: 65px;
-    font-size: 12px;
+    min-height: 75px;
+    padding: 4px;
   }
 
-  .card {
-    padding: 16px;
-  }
+  .weekday { font-size: 10px; }
+  .event-pill { font-size: 9px; padding: 3px; }
+
+  .calendar { gap: 0; }
 }
 </style>
-
 </head>
 
 <body>
 
 <header>
-  <div class="logo">calender.</div>
-  <nav>
-    <button class="active" onclick="showPage('home',this)">Home</button>
-    <button onclick="showPage('calendar',this)">Calendar</button>
-    <button onclick="showPage('todos',this)">To-do</button>
-    <button onclick="showPage('important',this)">Important</button>
-  </nav>
+  <div class="logo">Calender</div>
+  <button class="add-button" onclick="openModal()">+ Add Event</button>
 </header>
 
 <main>
-
-<section id="home" class="page active">
-  <h1>Welcome to Calender ♡</h1>
-  <p class="muted" id="todayText"></p>
-
-  <div class="card">
-    <h2>What's coming up?</h2>
-    <div id="upcoming"></div>
-  </div>
-
-  <div class="card">
-    <h2>Quick add</h2>
-    <button class="primary" onclick="showPage('calendar',document.querySelectorAll('nav button')[1]);openForm()">
-      + Add an event
-    </button>
-  </div>
-
-  <div class="card">
-    <h2>Your to-do list</h2>
-    <div id="homeTodos"></div>
-    <button class="secondary" onclick="showPage('todos',document.querySelectorAll('nav button')[2])">
-      View all tasks
-    </button>
-  </div>
-</section>
-
-<section id="calendar" class="page">
-  <h1>Your Calendar</h1>
-
-  <div class="card">
-    <div class="month-header">
-      <button onclick="changeMonth(-1)">←</button>
-      <h2 id="monthTitle"></h2>
-      <button onclick="changeMonth(1)">→</button>
+  <div class="toolbar">
+    <div class="month-controls">
+      <button class="nav-button" onclick="changeMonth(-1)">‹</button>
+      <h1 id="monthTitle"></h1>
+      <button class="nav-button" onclick="changeMonth(1)">›</button>
+      <button class="today-button" onclick="goToday()">Today</button>
     </div>
 
-    <div style="display:flex;gap:8px;margin-top:10px;">
-      <button class="secondary" onclick="setView('month')">Month</button>
-      <button class="secondary" onclick="setView('week')">Week</button>
-      <button class="primary" onclick="openForm()">+ Add</button>
+    <div class="view-options">
+      <button class="view-button active" id="monthBtn" onclick="setView('month')">Month</button>
+      <button class="view-button" id="weekBtn" onclick="setView('week')">Week</button>
     </div>
-
-    <div id="calendarContent"></div>
   </div>
 
-  <div class="card">
-    <h2 id="selectedTitle">Events</h2>
-    <div id="selectedEvents"></div>
+  <div class="calendar" id="calendar"></div>
+
+  <div class="agenda">
+    <h2 id="agendaTitle">Your schedule</h2>
+    <div id="agendaEvents"></div>
   </div>
+</main>
 
-  <div class="card" id="eventForm" style="display:none">
-    <h2 id="formTitle">Add an event</h2>
-    <label>Event name</label>
-    <input id="eventName" placeholder="Example: Soccer practice">
+<div class="modal" id="eventModal">
+  <div class="modal-content">
+    <h2 id="modalTitle">Add event</h2>
 
-    <label>Date</label>
+    <label for="eventName">Event name</label>
+    <input id="eventName" placeholder="What are you doing?">
+
+    <label for="eventDate">Date</label>
     <input id="eventDate" type="date">
 
-    <label>Time (optional)</label>
+    <label for="eventTime">Time (optional)</label>
     <input id="eventTime" type="time">
 
-    <label>Category</label>
-    <select id="eventCategory">
-      <option value="Personal">Personal</option>
-      <option value="School">School</option>
-      <option value="Friends">Friends</option>
-      <option value="Sports">Sports</option>
-      <option value="Important">Important</option>
-    </select>
-
-    <button class="primary" onclick="saveEvent()">Save event</button>
-    <button class="secondary" onclick="closeForm()">Cancel</button>
+    <div class="modal-actions">
+      <button class="cancel-button" onclick="closeModal()">Cancel</button>
+      <button class="save-button" onclick="saveEvent()">Save</button>
+    </div>
   </div>
-</section>
-
-<section id="todos" class="page">
-  <h1>To-do list</h1>
-  <div class="card">
-    <h2>Add a task</h2>
-    <input id="todoInput" placeholder="What do you need to do?">
-    <button class="primary" onclick="addTodo()">Add task</button>
-  </div>
-  <div class="card">
-    <h2>Your tasks</h2>
-    <div id="todoList"></div>
-  </div>
-</section>
-
-<section id="important" class="page">
-  <h1>Important Dates</h1>
-  <p class="muted">Keep track of the dates you don't want to forget.</p>
-  <div class="card">
-    <div id="importantList"></div>
-  </div>
-</section>
-
-</main>
+</div>
 
 <script>
 let events = JSON.parse(localStorage.getItem("calenderEvents") || "[]");
-let todos = JSON.parse(localStorage.getItem("calenderTodos") || "[]");
 
 let currentDate = new Date();
 let selectedDate = dateString(new Date());
@@ -389,229 +379,207 @@ let view = "month";
 let editingId = null;
 
 function dateString(date) {
-  let y = date.getFullYear();
-  let m = String(date.getMonth()+1).padStart(2,"0");
-  let d = String(date.getDate()).padStart(2,"0");
-  return `${y}-${m}-${d}`;
+  return [
+    date.getFullYear(),
+    String(date.getMonth()+1).padStart(2,"0"),
+    String(date.getDate()).padStart(2,"0")
+  ].join("-");
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, c => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;",
+    '"':"&quot;", "'":"&#39;"
+  }[c]));
 }
 
 function saveData() {
   localStorage.setItem("calenderEvents",JSON.stringify(events));
-  localStorage.setItem("calenderTodos",JSON.stringify(todos));
 }
 
-function showPage(id,button) {
-  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
-  if(button) button.classList.add("active");
-  renderAll();
+function render() {
+  renderCalendar();
+  renderAgenda();
 }
 
 function changeMonth(amount) {
-  currentDate.setMonth(currentDate.getMonth()+amount);
-  renderCalendar();
+  currentDate = new Date(
+    currentDate.getFullYear(),
+    currentDate.getMonth()+amount,
+    1
+  );
+  render();
+}
+
+function goToday() {
+  currentDate = new Date();
+  selectedDate = dateString(new Date());
+  render();
 }
 
 function setView(type) {
-  view=type;
-  renderCalendar();
-}
-
-function openForm(id=null) {
-  editingId=id;
-  let event=events.find(e=>e.id===id);
-  document.getElementById("eventForm").style.display="block";
-  document.getElementById("formTitle").textContent=event?"Edit event":"Add an event";
-  document.getElementById("eventName").value=event?event.name:"";
-  document.getElementById("eventDate").value=event?event.date:selectedDate;
-  document.getElementById("eventTime").value=event?event.time:"";
-  document.getElementById("eventCategory").value=event?event.category:"Personal";
-  document.getElementById("eventForm").scrollIntoView({behavior:"smooth"});
-}
-
-function closeForm() {
-  document.getElementById("eventForm").style.display="none";
-  editingId=null;
-}
-
-function saveEvent() {
-  let name=document.getElementById("eventName").value.trim();
-  let date=document.getElementById("eventDate").value;
-  if(!name || !date) {
-    alert("Please add an event name and date.");
-    return;
-  }
-
-  let item={
-    id:editingId || Date.now(),
-    name,
-    date,
-    time:document.getElementById("eventTime").value,
-    category:document.getElementById("eventCategory").value
-  };
-
-  if(editingId) {
-    events=events.map(e=>e.id===editingId?item:e);
-  } else {
-    events.push(item);
-  }
-
-  selectedDate=date;
-  currentDate=new Date(date+"T12:00:00");
-  saveData();
-  closeForm();
-  renderAll();
-}
-
-function deleteEvent(id) {
-  if(confirm("Delete this event?")) {
-    events=events.filter(e=>e.id!==id);
-    saveData();
-    renderAll();
-  }
-}
-
-function eventHTML(e) {
-  return `<div class="event">
-    <div><strong>${escapeHTML(e.name)}</strong><br>
-    <small>${e.date}${e.time?" · "+e.time:""} · ${escapeHTML(e.category)}</small></div>
-    <div>
-      <button class="secondary" onclick="openForm(${e.id})">Edit</button>
-      <button class="secondary" onclick="deleteEvent(${e.id})">×</button>
-    </div>
-  </div>`;
-}
-
-function escapeHTML(text) {
-  return String(text).replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
-}
-
-function renderCalendar() {
-  let year=currentDate.getFullYear();
-  let month=currentDate.getMonth();
-  document.getElementById("monthTitle").textContent=
-    currentDate.toLocaleDateString("en-US",{month:"long",year:"numeric"});
-
-  let html="";
-  if(view==="month") {
-    let first=new Date(year,month,1);
-    let days=new Date(year,month+1,0).getDate();
-    let offset=first.getDay();
-
-    html='<div class="calendar-grid">';
-    ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(d=>{
-      html+=`<div class="day-name">${d}</div>`;
-    });
-
-    for(let i=0;i<offset;i++) html+="<div></div>";
-
-    for(let day=1;day<=days;day++) {
-      let date=dateString(new Date(year,month,day));
-      let dayEvents=events.filter(e=>e.date===date);
-      let classes="day";
-      if(date===dateString(new Date())) classes+=" today";
-      if(date===selectedDate) classes+=" selected";
-
-      html+=`<div class="${classes}" onclick="selectDate('${date}')">
-        ${day}
-        ${dayEvents.slice(0,2).map(e=>`<span class="event-dot">• ${escapeHTML(e.name)}</span>`).join("")}
-        ${dayEvents.length>2?`<span class="event-dot">+${dayEvents.length-2} more</span>`:""}
-      </div>`;
-    }
-    html+="</div>";
-  } else {
-    let start=new Date(year,month,currentDate.getDate());
-    start.setDate(start.getDate()-start.getDay());
-    for(let i=0;i<7;i++) {
-      let d=new Date(start);
-      d.setDate(start.getDate()+i);
-      let date=dateString(d);
-      let dayEvents=events.filter(e=>e.date===date);
-      html+=`<div class="week-row">
-        <strong>${d.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"})}</strong>
-        <div>${dayEvents.length?dayEvents.map(e=>`<div onclick="selectDate('${date}')" style="cursor:pointer">${escapeHTML(e.name)}</div>`).join(""):'<span class="muted">No events</span>'}</div>
-      </div>`;
-    }
-  }
-
-  document.getElementById("calendarContent").innerHTML=html;
-  renderSelected();
+  view = type;
+  document.getElementById("monthBtn").classList.toggle("active",type==="month");
+  document.getElementById("weekBtn").classList.toggle("active",type==="week");
+  render();
 }
 
 function selectDate(date) {
-  selectedDate=date;
-  renderCalendar();
+  selectedDate = date;
+  currentDate = new Date(date+"T12:00:00");
+  render();
 }
 
-function renderSelected() {
-  document.getElementById("selectedTitle").textContent=
-    new Date(selectedDate+"T12:00:00").toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric"});
-  let list=events.filter(e=>e.date===selectedDate);
-  document.getElementById("selectedEvents").innerHTML=
-    list.length?list.map(eventHTML).join(""):'<p class="muted">Nothing planned yet!</p>';
+function renderCalendar() {
+  document.getElementById("monthTitle").textContent =
+    currentDate.toLocaleDateString("en-US",{month:"long",year:"numeric"});
+
+  let html = "";
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(day => {
+    html += `<div class="weekday">${day}</div>`;
+  });
+
+  let start;
+  let total;
+
+  if(view==="month") {
+    start = new Date(currentDate.getFullYear(),currentDate.getMonth(),1);
+    start.setDate(1-start.getDay());
+    total = 42;
+  } else {
+    start = new Date(currentDate);
+    start.setDate(start.getDate()-start.getDay());
+    total = 7;
+  }
+
+  for(let i=0;i<total;i++) {
+    let date = new Date(start);
+    date.setDate(start.getDate()+i);
+    let key = dateString(date);
+    let isOutside = date.getMonth()!==currentDate.getMonth();
+    let classes = "day";
+
+    if(key===dateString(new Date())) classes+=" today";
+    if(key===selectedDate) classes+=" selected";
+    if(view==="month" && isOutside) classes+=" outside";
+
+    let dayEvents = events.filter(e=>e.date===key);
+
+    html += `
+      <div class="${classes}" onclick="selectDate('${key}')">
+        <span class="day-number">${date.getDate()}</span>
+        ${dayEvents.slice(0,3).map(e=>`
+          <span class="event-pill">${escapeHTML(e.name)}</span>
+        `).join("")}
+        ${dayEvents.length>3?`<span class="event-pill">+${dayEvents.length-3} more</span>`:""}
+      </div>
+    `;
+  }
+
+  document.getElementById("calendar").innerHTML = html;
 }
 
-function addTodo() {
-  let input=document.getElementById("todoInput");
-  let text=input.value.trim();
-  if(!text) return;
-  todos.push({id:Date.now(),text,done:false});
-  input.value="";
+function renderAgenda() {
+  let date = new Date(selectedDate+"T12:00:00");
+
+  document.getElementById("agendaTitle").textContent =
+    date.toLocaleDateString("en-US",{
+      weekday:"long",month:"long",day:"numeric"
+    });
+
+  let list = events
+    .filter(e=>e.date===selectedDate)
+    .sort((a,b)=>(a.time||"").localeCompare(b.time||""));
+
+  if(!list.length) {
+    document.getElementById("agendaEvents").innerHTML =
+      '<div class="empty">No events scheduled. Add something to your day!</div>';
+    return;
+  }
+
+  document.getElementById("agendaEvents").innerHTML = list.map(e=>`
+    <div class="agenda-event">
+      <div class="event-details">
+        <div class="event-color"></div>
+        <div>
+          <strong>${escapeHTML(e.name)}</strong>
+          <div class="event-time">${e.time ? formatTime(e.time) : "All day"}</div>
+        </div>
+      </div>
+      <div class="event-actions">
+        <button class="small-button" onclick="editEvent(${e.id})">Edit</button>
+        <button class="small-button" onclick="deleteEvent(${e.id})">Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function formatTime(time) {
+  let [hours,minutes] = time.split(":");
+  let d = new Date();
+  d.setHours(Number(hours),Number(minutes));
+  return d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
+}
+
+function openModal() {
+  editingId = null;
+  document.getElementById("modalTitle").textContent = "Add event";
+  document.getElementById("eventName").value = "";
+  document.getElementById("eventDate").value = selectedDate;
+  document.getElementById("eventTime").value = "";
+  document.getElementById("eventModal").classList.add("open");
+}
+
+function closeModal() {
+  document.getElementById("eventModal").classList.remove("open");
+}
+
+function saveEvent() {
+  let name = document.getElementById("eventName").value.trim();
+  let date = document.getElementById("eventDate").value;
+  let time = document.getElementById("eventTime").value;
+
+  if(!name || !date) {
+    alert("Please enter an event name and date.");
+    return;
+  }
+
+  if(editingId!==null) {
+    events = events.map(e=>e.id===editingId?{...e,name,date,time}:e);
+  } else {
+    events.push({id:Date.now(),name,date,time});
+  }
+
+  selectedDate = date;
+  currentDate = new Date(date+"T12:00:00");
   saveData();
-  renderAll();
+  closeModal();
+  render();
 }
 
-function toggleTodo(id) {
-  todos=todos.map(t=>t.id===id?{...t,done:!t.done}:t);
+function editEvent(id) {
+  let e = events.find(item=>item.id===id);
+  if(!e) return;
+
+  editingId = id;
+  document.getElementById("modalTitle").textContent = "Edit event";
+  document.getElementById("eventName").value = e.name;
+  document.getElementById("eventDate").value = e.date;
+  document.getElementById("eventTime").value = e.time || "";
+  document.getElementById("eventModal").classList.add("open");
+}
+
+function deleteEvent(id) {
+  if(!confirm("Delete this event?")) return;
+  events = events.filter(e=>e.id!==id);
   saveData();
-  renderAll();
+  render();
 }
 
-function deleteTodo(id) {
-  todos=todos.filter(t=>t.id!==id);
-  saveData();
-  renderAll();
-}
-
-function renderTodos() {
-  let html=todos.length?todos.map(t=>`
-    <div class="todo-row ${t.done?"done":""}">
-      <input type="checkbox" style="width:auto" ${t.done?"checked":""} onchange="toggleTodo(${t.id})">
-      <span>${escapeHTML(t.text)}</span>
-      <button class="secondary" onclick="deleteTodo(${t.id})">×</button>
-    </div>`).join(""):'<p class="muted">Your list is empty. Add something!</p>';
-
-  document.getElementById("todoList").innerHTML=html;
-  document.getElementById("homeTodos").innerHTML=html;
-}
-
-function renderAll() {
-  renderCalendar();
-  renderTodos();
-
-  let upcoming=events.filter(e=>e.date>=dateString(new Date()))
-    .sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time))
-    .slice(0,5);
-
-  document.getElementById("upcoming").innerHTML=
-    upcoming.length?upcoming.map(eventHTML).join(""):'<p class="muted">No upcoming events yet.</p>';
-
-  let important=events.filter(e=>e.category==="Important")
-    .sort((a,b)=>a.date.localeCompare(b.date));
-
-  document.getElementById("importantList").innerHTML=
-    important.length?important.map(eventHTML).join(""):'<p class="muted">Add an event with the Important category to see it here.</p>';
-}
-
-document.getElementById("todayText").textContent=
-  new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"});
-
-renderAll();
+render();
 </script>
 
 </body>
 </html>
+
 
